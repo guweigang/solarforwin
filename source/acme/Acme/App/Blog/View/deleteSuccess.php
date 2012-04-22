@@ -1,0 +1,1 @@
+<p><?php echo $this->getText('TEXT_DELETED'); ?></p>

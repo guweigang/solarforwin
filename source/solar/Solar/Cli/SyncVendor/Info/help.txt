@@ -1,0 +1,4 @@
+Sync Vendor among directories source/vendor, include/Vendor and 
+doc/public/Vendor from the remainder of the project system.
+
+Usage: %*solar sync-vendor <Vendor>%n

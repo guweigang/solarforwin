@@ -1,0 +1,5 @@
+Acme command line tool.
+
+Usage: %*acme <command> <options> <params>%n
+
+Try 'acme help <command>' for help on a specific command.

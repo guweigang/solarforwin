@@ -1,0 +1,69 @@
+[1] bootstrap: /index.php及docroot/index.php 
+line 5
+在windows系统解压Solar时，在include目录中默认没有Solar内核的symlink，尽管1.1.2版本中作者给出了winfix.bat文件用于解决此问题，但是在windows xp, 2000, 2003中无法适用，所以在此判断/include目录下是否存在symlink，如果不存在，则直接引用/source/solar/Solar。
+On windows platform, there doesn't exist Solar Core in /include dir when you uncompress tarball. Although Paul gives winfix.bat in version 1.1.2, but it does not work in windows xp, 2000 and 2003. So here i make a judgement to check if solar core exists in include/ dir. if not , i will set include path as /source/solar/Solar.
+
+[2] /script/solar
+line 115
+和[1]中原因一样，当未在/include找到Solar内核时，直接到/source/solar下找
+
+line 64
+改变查找solar文件的路径：$dir，使得用户可以自定义cli行为
+
+line 50  and line 13
+添加$this->_script属性，并为其赋值
+
+[3] /source/solar/Solar/Symlink.php
+line 52 and line 70
+$src and $tgt should use "\" instead of "/"， 
+So I use str_replace('/', DIRECTORY_SEPARATOR, $src) to change this.
+
+line 253
+if it is file, use unlink to delete 
+if it is dir, use  rmdir to delete
+
+line 28 添加一个静态属性，用于指示现在调用的是哪个命令，目前仅用于sync-vendor命令
+
+line 91 做一个判断，如果是sync-vendor命令，则不对目标做任何检查
+
+line 105 处理windows xp, 2000, 2003系统时的命令调用
+
+line 257 and 286 添加_makeXP和_makeXPDir方法，用于处理windows xp的文件和目录
+并删除mkdir命令
+
+[4] /source/solar/Solar/Cli/LinkVendor.php
+line 102
+链接Vendor时，添加必要的link文件，如：vendor.bat
+且当Vendor为Solar时，作特殊处理
+
+[5] /source/solar/Solar/Cli/UnlinkVendor.php
+line 85
+删除Vendor时，删除必要的link文件，如：vendor.bat
+且当Vendor为Solar时，作特殊处理
+
+line 95 
+如果是windows xp, 2000, 2003 则使用同步工具，同步目录和文档
+
+[6] /source/solar/Solar/Sql/Adapter/Mysql.php
+line 120
+可以在config.php中配置数据库编码。
+
+
+[7] /source/solar/Solar.php
+line 277
+添加函数supportSymlink
+
+[8] /source/solar/Solar/Cli/LinkPublic.php
+line 99
+改成绝对路径，否则在不同的路径下使用命令行将影响结果。
+
+[9] /source/solar/Solar/Dir.php
+line 269
+添加函数 rmvdir();用于递归删除非空文件夹
+
+line 251 
+添加对window xp, 2000, 2003的支持，如果不能使用rmdir删除不了，直接运行系统命令rmdir
+
+[10] 添加/script/solar.bat和/script/phpenv.ini
+
+[11] 添加/source/Cli/SyncVendor.php和/source/Cli/SyncVendor文件夹
