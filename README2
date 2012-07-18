@@ -67,3 +67,22 @@ line 251
 [10] 添加/script/solar.bat和/script/phpenv.ini
 
 [11] 添加/source/Cli/SyncVendor.php和/source/Cli/SyncVendor文件夹
+
+[12] /index.php
+line 13
+添加DEBUG常量, 是否开启DEBUG
+
+[13] /source/solar/Solar.php
+line 99 
+添加$start_time静态变量记录开始执行时间
+line 179 
+得到执行的开始时间
+
+[14] /source/solar/Solar/Sql/Adapter.php
+line 40
+添加保存SQL查询信息的静态变量 $sql_debug
+line 660
+得到每次SQL查询信息
+
+[15] /debug/*
+debug的数据文件和对外入口

@@ -1,0 +1,102 @@
+body{
+    font-family: "微软雅黑","lucida grande",tahoma,verdana,arial,sans-serif;
+	font-size:12px;
+	margin:0;
+	padding: 0px 10px;
+}
+
+hr {
+	/*border-top: 1px solid red;*/
+	border-bottom: 0px;
+	margin: 0px;
+	padding: 0px;
+}
+#sql_content hr, #ajax_sql_content hr {
+	border-top: 1px dashed #ccc;
+	margin: 2px 0;
+}
+
+/* nav */
+#debug_nav {
+	border-bottom: 1px solid #000;
+	position: fixed;
+	top: 0px;
+	background-color: #fff;
+}
+caption {
+	border-top: 1px solid #000;
+	background-color: #ccc;
+	padding: 5px 5px;
+}
+caption, #debug_nav td {
+	margin: 0px;
+	padding: 10px;
+	font-size: 12px;
+}
+#debug_nav td {
+	cursor: pointer;
+}
+#debug_nav #file_nav {
+	/* text-align: right; */
+}
+
+/* table */
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+#sql_content, #ajax_sql_content, #cookie_content, #file_content {
+	padding-top: 74px;
+}
+#sql_content table th, #sql_content table td, #ajax_sql_content table th, #ajax_sql_content table td {
+	border: 1px solid #ccc;
+	padding: 3px 3px;
+}
+th {
+	background-color: #ddd;
+}
+
+/* content */
+#sql_content, #file_content, #cookie_content {
+	 display: none; 
+}
+
+.call_trace_call {
+	display: none;
+}
+#sql_content table table , #ajax_sql_content table table {
+	margin: 10px 0 10px 40px;
+	width: 95%;
+}
+.call_trace_op, .sql_trace_op {
+	cursor: pointer;
+	text-decoration: underline;
+	color: #00f;
+}
+.sql_trace_sql {
+	margin-left: 10px;
+}
+.sql_trace_sql pre {
+	margin-left: 10px;
+	border: 1px dashed #ccc;
+	width: 400px;
+	font-size: 12px;
+	font-family: Consolas;
+}
+
+ul {
+	list-style-type: decimal;
+}
+
+.tr_hover {
+	background-color: #eee;
+}
+
+.obvious {
+	font-size: bold;
+	color: blue;
+}
+
+.ajax_sql_uri td {
+	font-weight: bold;
+}
