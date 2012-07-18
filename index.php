@@ -10,6 +10,9 @@
  *
  */
 
+// 开启 debug
+define('DEBUG', true);
+
 // Solar system directory
 $system = dirname(__FILE__);
 
@@ -58,6 +61,12 @@ Solar::start($config);
 // instantiate and run the front controller
 $front = Solar_Registry::get('controller_front');
 $front->display();
+
+// 生成debug数据
+if(defined("DEBUG") && DEBUG) {
+	$debug = Solar::factory('Solar_Debug');
+	echo $debug->debug();
+}
 
 // Done!
 Solar::stop();

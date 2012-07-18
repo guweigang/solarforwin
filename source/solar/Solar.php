@@ -96,6 +96,15 @@ class Solar
      */
     protected static $_status = false;
 
+	/**
+	 *
+	 * 开始执行时间 为Solar_Debug
+	 *
+	 * @var int
+	 *
+	 */
+	public static $start_time;
+
     /**
      *
      * Constructor is disabled to enforce a singleton pattern.
@@ -166,6 +175,11 @@ class Solar
         if (Solar::$_status) {
             return;
         }
+
+		// 记录程序执行开始时间 Solar_Debug
+		if(defined('DEBUG') && DEBUG) {
+			Solar::$start_time = microtime(true);
+		}
 
         // make sure these classes are loaded
         $list = array(

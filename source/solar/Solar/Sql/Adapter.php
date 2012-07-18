@@ -36,7 +36,16 @@
  * 
  */
 abstract class Solar_Sql_Adapter extends Solar_Base {
-    
+ 
+	/**
+	 * 
+	 * 记录每条查询的Sql语句, 执行的时间, 代码执行backtrace
+	 *
+	 * @var array
+	 *
+	 */
+	public static $sql_debug;
+       
     /**
      * 
      * Default configuration values.
@@ -647,7 +656,12 @@ abstract class Solar_Sql_Adapter extends Solar_Base {
                 'pdo_trace' => $e->getTraceAsString(),
             ));
         }
-        
+     
+		// Solar_Debug 记录每次查询sql
+		if(defined('DEBUG') && DEBUG) {
+			self::$sql_debug[] = array('sql' => $stmt, 'time' => number_format((microtime(true) - $time), 6), 'backtrace' => debug_backtrace());
+		}   
+
         // retain the profile data?
         $this->_addProfile($time, $prep, $data);
         
